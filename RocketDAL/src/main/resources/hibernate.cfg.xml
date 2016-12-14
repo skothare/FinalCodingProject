@@ -4,9 +4,9 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>  
-  <property name="hibernate.default_schema">YourUserName</property>
-  <property name="hibernate.connection.username">YourUserName</property>
-  <property name="hibernate.connection.password">YourPw</property>
+  <property name="hibernate.default_schema">KOTHARES</property>
+  <property name="hibernate.connection.username">KOTHARES</property>
+  <property name="hibernate.connection.password">SUMEETLEGO</property>
   <property name="hibernate.connection.url">jdbc:oracle:thin:@cisc181.canrkwijj6g6.us-east-1.rds.amazonaws.com:1521:ORCL</property>
   <property name="show_sql">true</property>
   <property name="format_sql">true</property>

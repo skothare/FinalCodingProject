@@ -1,36 +1,50 @@
 package rocketBase;
 
+import java.util.ArrayList;
+
 import org.apache.poi.ss.formula.functions.*;
+
+import exceptions.RateException;
+import rocketDomain.RateDomainModel;
 
 public class RateBLL {
 
 	private static RateDAL _RateDAL = new RateDAL();
 	
-	static double getRate(int GivenCreditScore) 
+	/**
+	 * Calculates an interest rate given a Credit Score.
+	 * @param GivenCreditScore
+	 * @return
+	 * @throws RateException
+	 */
+	public static double getRate(int GivenCreditScore) throws RateException
 	{
-		//TODO - RocketBLL RateBLL.getRate - make sure you throw any exception
 		
-		//		Call RateDAL.getAllRates... this returns an array of rates
-		//		write the code that will search the rates to determine the 
-		//		interest rate for the given credit score
-		//		hints:  you have to sort the rates...  you can do this by using
-		//			a comparator... or by using an OrderBy statement in the HQL
+		RateDomainModel rt2 = new RateDomainModel();
 		
-		
-		//TODO - RocketBLL RateBLL.getRate
-		//			obviously this should be changed to return the determined rate
-		return 0;
-		
-		
+		double Rate = 0;
+		for (RateDomainModel rt : RateDAL.getAllRates() ){
+			if(GivenCreditScore >= rt.getiMinCreditScore()){
+				Rate = rt.getdInterestRate();
+				System.out.println("Rate " + Rate);	
+			}
+		}
+		if (Rate == 0.0){
+			throw new RateException(rt2);
+		}
+		return Rate;		
 	}
-	
-	
-	//TODO - RocketBLL RateBLL.getPayment 
-	//		how to use:
-	//		https://poi.apache.org/apidocs/org/apache/poi/ss/formula/functions/FinanceLib.html
-	
+	/**
+	 * Calculates the payment given the following variables.	
+	 * @param r Percent Interest Rate per month.
+	 * @param n Number of payments
+	 * @param p Present value
+	 * @param f Future value
+	 * @param t Boolean
+	 * @return
+	 */
 	public static double getPayment(double r, double n, double p, double f, boolean t)
 	{		
-		return FinanceLib.pmt(r, n, p, f, t);
+		return Math.abs(FinanceLib.pmt(r, n, p, f, t));
 	}
 }

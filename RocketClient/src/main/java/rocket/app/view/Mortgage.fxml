@@ -1,10 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="rocket.app.view.MortgageController">
-
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rocket.app.view.MortgageController">
+   <children>
+      <GridPane layoutX="121.0" layoutY="65.0" prefHeight="256.0" prefWidth="358.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="creditScoreLabel" text="Enter Credit Score" wrapText="true" />
+            <TextField fx:id="txtCreditScore" GridPane.columnIndex="1" />
+            <Label fx:id="incomeLabel" text="Enter your Monthly Income" wrapText="true" GridPane.rowIndex="1" />
+            <TextField fx:id="txtIncome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="expensesLabel" text="Enter your Monthly Expenses" wrapText="true" GridPane.rowIndex="2" />
+            <Label fx:id="houseCostLabel" text="Enter the House Cost" wrapText="true" GridPane.rowIndex="3" />
+            <TextField fx:id="txtExpenses" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtHouseCost" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbTerm" prefHeight="26.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="termLabel" text="Select your payment term (In Months)" wrapText="true" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnCalculateLoanPayment" layoutX="201.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnCalculatePayment" text="Calculate Your Mortgage Payment" wrapText="true" />
+      <GridPane layoutX="6.0" layoutY="361.0" prefHeight="123.0" prefWidth="587.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lblMortgagePayment" prefHeight="17.0" prefWidth="581.0" textFill="#28b726" wrapText="true" />
+            <Label fx:id="downPaymentLabel" prefHeight="17.0" prefWidth="580.0" textFill="#55ae3a" wrapText="true" GridPane.rowIndex="1" />
+            <Label fx:id="showErrorMessagesLabel" prefHeight="24.0" prefWidth="582.0" textFill="#b52c1d" wrapText="true" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Label layoutX="286.0" layoutY="31.0" text="Welcome to the Mortgage Calculator" textAlignment="CENTER" textFill="#b31515" underline="true" wrapText="true">
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <ImageView fitHeight="79.0" fitWidth="112.0" layoutX="121.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/skothare/git/Rocket/RocketClient/src/main/resources/res/the-entire-mortgage.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
