@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rocket.app.view.MortgageController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rocket.app.view.MortgageController">
    <children>
-      <GridPane layoutX="121.0" layoutY="65.0" prefHeight="256.0" prefWidth="358.0">
+      <GridPane layoutX="121.0" layoutY="80.0" prefHeight="256.0" prefWidth="358.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,6 +24,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -36,12 +37,14 @@
             <Label fx:id="houseCostLabel" text="Enter the House Cost" wrapText="true" GridPane.rowIndex="3" />
             <TextField fx:id="txtExpenses" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtHouseCost" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="cmbTerm" prefHeight="26.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="termLabel" text="Select your payment term (In Months)" wrapText="true" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cmbTerm" prefHeight="26.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="termLabel" text="Select your payment term (In Months)" wrapText="true" GridPane.rowIndex="5" />
+            <Label fx:id="lblDownPaymentCombo" prefHeight="35.0" prefWidth="173.0" text="Enter the required % Down Payment" wrapText="true" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cmbDP" prefHeight="25.0" prefWidth="178.0" promptText="\% DP of House Cost" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="btnCalculateLoanPayment" layoutX="201.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnCalculatePayment" text="Calculate Your Mortgage Payment" wrapText="true" />
-      <GridPane layoutX="6.0" layoutY="361.0" prefHeight="123.0" prefWidth="587.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.0">
+      <GridPane layoutX="6.0" layoutY="361.0" prefHeight="123.0" prefWidth="350.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -56,14 +59,17 @@
             <Label fx:id="showErrorMessagesLabel" prefHeight="24.0" prefWidth="582.0" textFill="#b52c1d" wrapText="true" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Label layoutX="286.0" layoutY="31.0" text="Welcome to the Mortgage Calculator" textAlignment="CENTER" textFill="#b31515" underline="true" wrapText="true">
+      <Label layoutX="241.0" layoutY="33.0" prefHeight="25.0" prefWidth="317.0" text="Welcome to the Mortgage Calculator" textAlignment="CENTER" textFill="#b31515" underline="true" wrapText="true">
          <effect>
             <Bloom />
          </effect>
+         <font>
+            <Font name="Baskerville Old Face" size="19.0" />
+         </font>
       </Label>
-      <ImageView fitHeight="79.0" fitWidth="112.0" layoutX="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="130.0" layoutX="112.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/skothare/git/Rocket/RocketClient/src/main/resources/res/the-entire-mortgage.jpg" />
+            <Image url="@the-entire-mortgage.jpg" />
          </image>
       </ImageView>
    </children>

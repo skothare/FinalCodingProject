@@ -30,11 +30,11 @@ public class MortgageController implements Initializable{
 	private TextField txtCreditScore;
 	@FXML
 	private TextField txtHouseCost;
-	@FXML
-	private TextField txtDownPayment;
 	
 	@FXML
 	private ComboBox cmbTerm;
+	@FXML
+	private ComboBox cmbDP;
 	
 	@FXML
 	private Label creditScoreLabel;
@@ -49,6 +49,8 @@ public class MortgageController implements Initializable{
 	@FXML
 	private Label downPaymentLabel;
 	@FXML
+	private Label lblDownPaymentCombo;
+	@FXML
 	private Label showErrorMessagesLabel;
 	@FXML
 	private Label lblMortgagePayment;
@@ -61,40 +63,45 @@ public class MortgageController implements Initializable{
 	}
 	
 	@FXML
-	public void btnCalculatePayment(ActionEvent event) throws NumberFormatException, RateException
+	public void btnCalculatePayment(ActionEvent event) throws NumberFormatException, 
+	RateException
 	{
 		Object message = null;
 		
 		Action a = new Action(eAction.CalculatePayment);
 		LoanRequest lq = new LoanRequest();
 		
+		try {
 		// Set Income
 		lq.setIncome(Double.parseDouble(txtIncome.getText()));
 		// Set Credit Score
 		lq.setiCreditScore(Integer.parseInt(txtCreditScore.getText()));
 		// Set term
 		lq.setiTerm(Integer.parseInt(cmbTerm.getValue().toString()));
-		// Set Down Payment
-		lq.setiDownPayment((int)(Integer.parseInt(txtHouseCost.getText())*0.05));
+		// Set Down Payment: House Cost * Percent Down Payment
+		lq.setiDownPayment((int)(Integer.parseInt(txtHouseCost.getText())
+				*Double.parseDouble(cmbDP.getValue().toString())/100));
 		// Set Expenses
 		lq.setExpenses(Double.parseDouble(txtExpenses.getText()));
 		
-		/**
-		 * Sets the Rate and notifies the user if the Credit Score is insufficient.
-		 */
-		try {
+		
 		// Set Rate
 		lq.setdRate(RateBLL.getRate(Integer.parseInt(txtCreditScore.getText())));
-		}
-		catch (RateException e){
-			showErrorMessagesLabel.setText("No rate available for your Credit Score.");
-			return;
-		}
+		
 		// Amount owed = Cost of the House - Down Payment
 		double dAmount = Double.parseDouble(txtHouseCost.getText())-
 				lq.getiDownPayment();
 		lq.setdAmount(dAmount);
-		
+		}
+		catch (RateException e){
+			showErrorMessagesLabel.setText("NO RATE IS AVAILABLE FOR "
+					+ "THIS CREDIT SCORE.");
+			return;
+		}
+		catch (NumberFormatException e){
+			showErrorMessagesLabel.setText("PLEASE ROUND THE"
+					+ " NUMBER TO THE NEAREST INTEGER.");
+		}
 		//	Set the loan request details...  rate, term, amount, credit score, 
 		//downpayment
 
@@ -115,12 +122,14 @@ public class MortgageController implements Initializable{
 				lblMortgagePayment.setText("Your Mortgage Payment  per month will be $ " 
 						+ dPayment + " at a rate of " + lRequest.getdRate() + 
 						"% per annum");
-				downPaymentLabel.setText("Your down payment of 5% will be " + 
+				downPaymentLabel.setText("Your down payment as per " + 
+						Double.parseDouble(cmbDP.getValue().toString()) + 
+						"% of the House Cost will be " + 
 						"$" + lRequest.getiDownPayment());
 			}
 		}
 		else{
-			lblMortgagePayment.setText("House Cost is too high.");
+			lblMortgagePayment.setText("HOUSE COST IS TOO HIGH.");
 		}
 	}
 	
@@ -130,6 +139,7 @@ public class MortgageController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	    cmbTerm.getItems().addAll("180", "360");
+	    cmbDP.getItems().addAll("0", "5", "15", "20", "25");
 	}
 
 	
